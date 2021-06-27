@@ -1,10 +1,19 @@
-const express = require('express')
-const path = require('path')
-const PORT = process.env.PORT || 5000
+const Discord = require("discord.js");
+const client = new Discord.Client();
 
-express()
-  .use(express.static(path.join(__dirname, 'public')))
-  .set('views', path.join(__dirname, 'views'))
-  .set('view engine', 'ejs')
-  .get('/', (req, res) => res.render('pages/index'))
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+client.on("ready", () => {
+  console.log(`Logged in...`);
+});
+
+client.on("message", (msg) => {
+  if (msg.content === "ping") {
+    msg.reply("pong");
+  } else if (
+    msg.content === "!raffle" &&
+    msg.author.username === "ProofOfBruh"
+  ) {
+    msg.reply("starting raffle");
+  }
+});
+
+client.login("ODU4MjI2ODEwMTAxOTU2NjA5.YNbEAA.DgbJzn85UVcADhh3fkpxTHT_oOI");
