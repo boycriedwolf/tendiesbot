@@ -38,27 +38,27 @@ client.on("message", async (msg) => {
 
         json.leaderboard.forEach((addressAndScore, i) => {
           if (i <= 0.01 * json.leaderboard.length) {
-            for (let j = 0; j < 15; j++) {
+            for (let j = 0; j < 150; j++) {
               raffle.push(addressAndScore.address);
             }
           } else if (i <= 0.1 * json.leaderboard.length) {
-            for (let j = 0; j < 14; j++) {
+            for (let j = 0; j < 140; j++) {
               raffle.push(addressAndScore.address);
             }
           } else if (i <= 0.25 * json.leaderboard.length) {
-            for (let j = 0; j < 13; j++) {
+            for (let j = 0; j < 125; j++) {
               raffle.push(addressAndScore.address);
             }
           } else if (i <= 0.5 * json.leaderboard.length) {
-            for (let j = 0; j < 12; j++) {
+            for (let j = 0; j < 110; j++) {
               raffle.push(addressAndScore.address);
             }
           } else if (i <= 0.75 * json.leaderboard.length) {
-            for (let j = 0; j < 11; j++) {
+            for (let j = 0; j < 105; j++) {
               raffle.push(addressAndScore.address);
             }
           } else {
-            for (let j = 0; j < 10; j++) {
+            for (let j = 0; j < 100; j++) {
               raffle.push(addressAndScore.address);
             }
           }
@@ -82,24 +82,6 @@ client.on("message", async (msg) => {
         );
       })
       .catch((err) => console.error("error:" + err));
-  } else if (msg.content === "!leaderboard") {
-    https
-      .get(
-        "https://tendies-hodl.herokuapp.com/api/v1/hodl/get_leaderboard",
-        (res) => {
-          console.log(`statusCode: ${res.statusCode}`);
-
-          console.log(res);
-
-          res.on("data", (d) => {
-            console.log(data);
-            process.stdout.write(d);
-          });
-        }
-      )
-      .on("error", (e) => {
-        console.error(e);
-      });
   } else if (msg.content === "!floor") {
     let floorPrice = Number.MAX_VALUE;
     const requests = [];
